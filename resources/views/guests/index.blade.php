@@ -21,22 +21,21 @@
         </thead>
         <tbody>
             @foreach($guests as $guest)
-                <tr>
-                    <td>{{ $guests->links() }} </td>
-                    <td>{{ $guest->name }}</td>
-                    <td>{{ $guest->email }}</td>
-                    <td>{{ $guest->checkin_date }}</td>
-                    <td>{{ $guest->checkout_date }}</td>
-                    <td>
-                        @if (!$guest->checkout_date)
-                        <form action="{{ route('guests.index') }}" method="GET">
-                            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search guests...">
-                            <button type="submit">Search</button>
-                        </form>
-                        @endif
-                    </td>
-                </tr>
-            @endforeach
+    <tr>
+        <td>{{ $guest->name }}</td>
+        <td>{{ $guest->email }}</td>
+        <td>{{ $guest->checkin_date }}</td>
+        <td>{{ $guest->checkout_date }}</td>
+        <td>
+            @if (!$guest->checkout_date)
+            <form action="{{ route('guests.checkout', $guest->id) }}" method="POST">
+                @csrf
+                <button type="submit">Checkout</button>
+            </form>
+            @endif
+        </td>
+    </tr>
+@endforeach
         </tbody>
     </table>
 </div>

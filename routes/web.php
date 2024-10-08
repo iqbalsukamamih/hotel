@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('wellcome');
+    return view('welcome');
 });
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -16,10 +16,10 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('guests', GuestController::class);
 });
 Route::resource('rooms', RoomController::class);
-Route::post('reservations/{id}/checkout', [ReservationController::class, 'checkout'])->name('reservations.checkout');Route::resource('reservations', ReservationController::class);
+Route::post('reservations/{id}/checkout', [ReservationController::class, 'checkout'])->name('reservations.checkout');
 Route::resource('reservations', ReservationController::class);
 Route::post('/',[GuestController::class, 'store'])->name('from.store');
 Route::get('/dashboard',[App\Http\Controllers\HomeController::class, 'index'])->name('dashboard'); 
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-
-
+Route::get('/guests/search', 'GuestController@search')->name('guests.search');
+Route::post('/guests/{id}/checkout', 'GuestController@checkout')->name('guests.checkout');
