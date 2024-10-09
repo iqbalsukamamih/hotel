@@ -38,15 +38,5 @@ public function checkout(Request $request, $id)
     $guest->save();
 
     return redirect()->route('guests.index')->with('success', 'Tamu berhasil checkout!');
-}
-
-    public function search(Request $request)
-{
-    $search = $request->input('search');
-    $guests = Guest::where('name', 'like', "%{$search}%")
-                    ->orWhere('email', 'like', "%{$search}%")
-                    ->get();
-
-    return view('guests.index', compact('guests'));
-}
+} 
 }

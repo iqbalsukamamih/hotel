@@ -21,5 +21,7 @@ Route::resource('reservations', ReservationController::class);
 Route::post('/',[GuestController::class, 'store'])->name('from.store');
 Route::get('/dashboard',[App\Http\Controllers\HomeController::class, 'index'])->name('dashboard'); 
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
-Route::get('/guests/search', 'GuestController@search')->name('guests.search');
+Route::get('/guests', 'GuestController@index')->name('guest.index');
+Route::get('/guests/create', 'GuestController@create')->name('guests.create');
+Route::post('/guests', 'GuestController@store')->name('guests.store');
 Route::post('/guests/{id}/checkout', 'GuestController@checkout')->name('guests.checkout');
