@@ -3,6 +3,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Guest;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class GuestController extends Controller
 {
@@ -20,23 +21,17 @@ class GuestController extends Controller
 
     public function store(Request $request)
 {
-    $request->validate([
-        'name' => 'required',
-        'email' => 'required|email|unique:guests',
-        'checkin_date' => 'required|date',
-    ]);
-
-    $guest = Guest::create($request->except('_token'));
-
+    $guest = new Guest();
+    $guest->fill($request->only(['name', 'email', 'phone'])); // Only fill the necessary columns
+    $guest->save();
     return redirect()->route('guest.index')->with('success', 'Guest checked in successfully!');
 }
 
 public function checkout(Request $request, $id)
 {
     $guest = Guest::find($id);
-    $guest->checkout_date = now();
+    $guest->checkout_date = Carbon::now(); // Use the Carbon facade
     $guest->save();
-
-    return redirect()->route('guests.index')->with('success', 'Tamu berhasil checkout!');
+    return redirect()->route('guest.index')->with('success', 'Tamu berhasil checkout!');
 } 
 }
