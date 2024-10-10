@@ -36,7 +36,7 @@
         </div>
         <button type="submit">Check In</button>
     </form>    
-    <a href="{{ route('guests.index') }}">Back to Guest List</a>
+    <a href="{{ route('guests.index') }}">kembali</a>
 </div>
 </section>
 </div>
