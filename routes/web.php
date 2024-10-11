@@ -23,4 +23,4 @@ Route::get('/dashboard',[App\Http\Controllers\HomeController::class, 'index'])->
 Route::get('/reservations', [ReservationController::class, 'index'])->name('reservations.index');
 Route::get('/index', [GuestController::class,'index'])->name('guests.index');
 Route::post('/store', [GuestController::class, 'store'])->name('guests.store');
-Route::get('/guests/{id}/checkout', [GuestController::class,'checkout'])->name('guests.checkout');
+Route::get('/guests/{id}/checkout', [GuestController::class, 'checkout'])->name('guests.checkout');
