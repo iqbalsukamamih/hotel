@@ -22,9 +22,9 @@ class GuestController extends Controller
     public function store(Request $request)
 {
     $guest = new Guest();
-    $guest->fill($request->only(['name', 'email', 'phone'])); // Only fill the necessary columns
+    $guest->fill($request->only(['name', 'email',  'checkin_date'])); // Only fill the necessary columns
     $guest->save();
-    return redirect()->route('guest.index')->with('success', 'Guest checked in successfully!');
+    return redirect()->route('guests.index')->with('success', 'Guest checked in successfully!');
 }
 
 public function checkout(Request $request, $id)
@@ -32,6 +32,6 @@ public function checkout(Request $request, $id)
     $guest = Guest::find($id);
     $guest->checkout_date = Carbon::now(); // Use the Carbon facade
     $guest->save();
-    return redirect()->route('guest.index')->with('success', 'Tamu berhasil checkout!');
+    return redirect()->route('guests.index')->with('success', 'Tamu berhasil checkout!');
 } 
 }
