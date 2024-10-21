@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use App\Models\Guest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\ItemNotFoundException;
+use PhpParser\Node\UseItem;
 
 class GuestController extends Controller
 {
@@ -34,4 +36,10 @@ public function checkout(Request $request, $id)
     $guest->save();
     return redirect()->route('guests.index')->with('success', 'Tamu berhasil checkout!');
 } 
+
+public function destroy($id)
+{
+    Guest::destroy($id); // Menghapus guest berdasarkan ID
+    return redirect()->route('guest.index')->with('success', 'guest berhasil dihapus.');
+}
 }
