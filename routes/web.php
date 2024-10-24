@@ -28,4 +28,4 @@ Route::get('/admin', function () {
     // ...
 })->middleware(['auth', 'admin']);
 // routes/web.php
-Route::delete('/item/{id}', [GuestController::class, 'destroy'])->name('guest.destroy');
+Route::delete('/items/{id}', [GuestController::class, 'destroy'])->name('destroy');

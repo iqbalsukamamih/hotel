@@ -39,7 +39,10 @@ public function checkout(Request $request, $id)
 
 public function destroy($id)
 {
-    Guest::destroy($id); // Menghapus guest berdasarkan ID
-    return redirect()->route('guest.index')->with('success', 'guest berhasil dihapus.');
+    $item = Guest::findOrFail($id);
+    $item->delete();
+    
+    return redirect()->route('guests.index')->with('success', 'Item deleted successfully.');
 }
+
 }

@@ -33,10 +33,11 @@
                 <button type="submit">Checkout</button>
             </form>
             @endif
-            <a href="#" class="btn btn-sm btn-danger"
-            onclick="handleDestory(`{{ route('guest.destroy', $guest->id) }}`)">
-             Hapus
-         </a>
+            <form action="{{ route('destroy', $guest->id) }}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Hapus</button>
+            </form>
         </td>
     </tr>
 @endforeach
