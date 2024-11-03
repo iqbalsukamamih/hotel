@@ -33,6 +33,7 @@
                 <button type="submit">Checkout</button>
             </form>
             @endif
+            <a href="{{route('guests.edit', $guest->id)}}" class="btn btn-sm btn-warning">Edit</a>
             <form action="{{ route('destroy', $guest->id) }}" method="POST">
                 @csrf
                 @method('DELETE')

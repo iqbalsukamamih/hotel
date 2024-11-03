@@ -24,6 +24,9 @@ Route::get('/reservations', [ReservationController::class, 'index'])->name('rese
 Route::get('/index', [GuestController::class,'index'])->name('guests.index');
 Route::post('/store', [GuestController::class, 'store'])->name('guests.store');
 Route::post('/guests/{id}/checkout', [GuestController::class, 'checkout'])->name('guests.checkout');
+Route::get('/guests/{id}/edit', [App\Http\Controllers\GuestController::class, 'edit'])->name('guests.edit');
+Route::put('/guests/{id}', [App\Http\Controllers\GuestController::class, 'update'])->name('guests.update');
+
 Route::get('/admin', function () {
     // ...
 })->middleware(['auth', 'admin']);

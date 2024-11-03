@@ -44,5 +44,19 @@ public function destroy($id)
     
     return redirect()->route('guests.index')->with('success', 'Item deleted successfully.');
 }
+public function edit(string $id)
+{
+    $guest= Guest::find($id);
+    return view('guests.edit', compact('guest'));
+}
 
+public function update(Request $request, string $id)
+{
+    $guest = new Guest();
+    $guest->fill($request->only(['name', 'email',  'checkin_date'])); // Only fill the necessary columns
+    $guest->save();
+    return redirect()->route('guests.index');
+    $guest->update($request->all());
+
+    }
 }
