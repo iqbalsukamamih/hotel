@@ -52,11 +52,8 @@ public function edit(string $id)
 
 public function update(Request $request, string $id)
 {
-    $guest = new Guest();
-    $guest->fill($request->only(['name', 'email',  'checkin_date'])); // Only fill the necessary columns
-    $guest->save();
+    $guest = Guest::find($id);
+    $guest->update($request->only(['name', 'email',  'checkin_date'])); // Only fill the necessary columns
     return redirect()->route('guests.index');
-    $guest->update($request->all());
-
     }
 }

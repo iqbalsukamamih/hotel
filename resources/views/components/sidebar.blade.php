@@ -34,7 +34,15 @@
             <span>Guest Lists</span>
         </a>
     </li>
-    
+    <li class="sidebar-item">
+        <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+            @csrf
+            <button type="submit" class="sidebar-link" style="border: none; background: none; padding: 0; color: inherit; text-align: left;">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Logout</span>
+            </button>
+        </form>
+    </li>
 </ul>
 </div>
 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>

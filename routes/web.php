@@ -32,3 +32,15 @@ Route::get('/admin', function () {
 })->middleware(['auth', 'admin']);
 // routes/web.php
 Route::delete('/items/{id}', [GuestController::class, 'destroy'])->name('destroy');
+use App\Http\Controllers\AdminAuthController;
+
+Route::get('admin/login', [AdminAuthController::class, 'showLoginForm'])->name('admin.login');
+Route::post('admin/login', [AdminAuthController::class, 'login']);
+Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('admin/dashboard', function () {
+        return view('admin.dashboard');
+    })->name('admin.dashboard');
+});
+Route::post('/logout', [AdminAuthController::class, 'logout'])->name('logout')->middleware('auth');
